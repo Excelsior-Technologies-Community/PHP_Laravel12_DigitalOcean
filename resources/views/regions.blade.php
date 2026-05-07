@@ -1,141 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>DigitalOcean Regions</title>
+    <title>Regions</title>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Segoe UI, Arial
+
+        body{
+            font-family:Segoe UI;
+            background:#0f172a;
+            color:white;
+            margin:0;
         }
 
-        body {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            min-height: 100vh;
-            color: #fff;
+        .navbar{
+            padding:20px 40px;
+            background:#111827;
         }
 
-        .navbar {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        .navbar a{
+            color:white;
+            text-decoration:none;
+            margin-right:20px;
         }
 
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
+        .container{
+            max-width:1000px;
+            margin:50px auto;
         }
 
-        .navbar a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 20px;
-            padding: 6px 14px;
-            border-radius: 6px;
-            transition: 0.3s;
+        .card{
+            background:#1e293b;
+            padding:30px;
+            border-radius:12px;
         }
 
-        .navbar a:hover {
-            background: #2563eb;
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 60px auto;
-            padding: 20px;
+        th,td{
+            padding:15px;
+            text-align:left;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            backdrop-filter: blur(12px);
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        th{
+            background:#2563eb;
         }
 
-        .title {
-            font-size: 26px;
-            margin-bottom: 20px;
-            font-weight: 600;
+        tr:nth-child(even){
+            background:rgba(255,255,255,0.05);
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 14px;
-            text-align: left;
-        }
-
-        th {
-            background: #1e40af;
-        }
-
-        tr:nth-child(even) {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        tr:hover {
-            background: rgba(37, 99, 235, 0.3);
-        }
-
-        .badge {
-            background: #22c55e;
-            padding: 4px 10px;
-            border-radius: 5px;
-            font-size: 12px;
-        }
     </style>
+
 </head>
 
 <body>
 
-    <div class="navbar">
-        <div class="logo">DigitalOcean Dashboard</div>
-        <div>
-            <a href="/regions">Regions</a>
-            <a href="/sizes">Sizes</a>
-            <a href="/droplets">Droplets</a>
-        </div>
+<div class="navbar">
+
+    <a href="/dashboard">Dashboard</a>
+    <a href="/regions">Regions</a>
+    <a href="/sizes">Sizes</a>
+    <a href="/droplets">Droplets</a>
+
+</div>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>🌍 Available Regions</h2>
+
+        <table>
+
+            <tr>
+                <th>#</th>
+                <th>Region</th>
+                <th>Status</th>
+            </tr>
+
+            @foreach($regions as $index => $region)
+
+            <tr>
+                <td>{{ $index + 1 }}</td>
+                <td>{{ $region->name }}</td>
+                <td>Active</td>
+            </tr>
+
+            @endforeach
+
+        </table>
+
     </div>
 
-    <div class="container">
-
-        <div class="card">
-
-            <div class="title">🌍 Available Regions</div>
-
-            <table>
-                <tr>
-                    <th>#</th>
-                    <th>Region Name</th>
-                    <th>Status</th>
-                </tr>
-
-                @foreach($regions as $index => $region)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $region->name }}</td>
-                        <td><span class="badge">Active</span></td>
-                    </tr>
-                @endforeach
-
-            </table>
-
-        </div>
-
-    </div>
+</div>
 
 </body>
 
