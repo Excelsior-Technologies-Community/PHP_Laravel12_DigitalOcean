@@ -340,6 +340,7 @@ class DigitalOceanController extends Controller
         'cost' => $costValue,  // Store as float
     ];
     
+    
     $droplets->push($newDroplet);
     session()->put('droplets', $droplets);
     
